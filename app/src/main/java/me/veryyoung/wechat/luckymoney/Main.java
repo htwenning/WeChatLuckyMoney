@@ -58,7 +58,6 @@ public class Main implements IXposedHookLoadPackage {
                 String versionName = context.getPackageManager().getPackageInfo(lpparam.packageName, 0).versionName;
                 log("Found wechat version:" + versionName);
                 wechatVersion = versionName;
-                new DonateHook().hook(lpparam);
                 VersionParam.init(versionName);
             }
             findAndHookMethod("com.tencent.wcdb.database.SQLiteDatabase", lpparam.classLoader, "insert", String.class, String.class, ContentValues.class, new XC_MethodHook() {
@@ -160,14 +159,14 @@ public class Main implements IXposedHookLoadPackage {
 
         String talker = contentValues.getAsString("talker");
 
-        String blackList = PreferencesUtils.blackList();
-        if (!isEmpty(blackList)) {
-            for (String wechatId : blackList.split(",")) {
-                if (talker.equals(wechatId.trim())) {
-                    return;
-                }
-            }
-        }
+//        String blackList = PreferencesUtils.blackList();
+//        if (!isEmpty(blackList)) {
+//            for (String wechatId : blackList.split(",")) {
+//                if (talker.equals(wechatId.trim())) {
+//                    return;
+//                }
+//            }
+//        }
 
         int isSend = contentValues.getAsInteger("isSend");
         if (PreferencesUtils.notSelf() && isSend != 0) {
@@ -175,13 +174,13 @@ public class Main implements IXposedHookLoadPackage {
         }
 
 
-        if (PreferencesUtils.notWhisper() && !isGroupTalk(talker)) {
-            return;
-        }
+//        if (PreferencesUtils.notWhisper() && !isGroupTalk(talker)) {
+//            return;
+//        }
 
-        if (!isGroupTalk(talker) && isSend != 0) {
-            return;
-        }
+//        if (!isGroupTalk(talker) && isSend != 0) {
+//            return;
+//        }
 
         String content = contentValues.getAsString("content");
         if (!content.startsWith("<msg")) {
@@ -190,15 +189,15 @@ public class Main implements IXposedHookLoadPackage {
 
         JSONObject wcpayinfo = new XmlToJson.Builder(content).build()
                 .getJSONObject("msg").getJSONObject("appmsg").getJSONObject("wcpayinfo");
-        String senderTitle = wcpayinfo.getString("sendertitle");
-        String notContainsWords = PreferencesUtils.notContains();
-        if (!isEmpty(notContainsWords)) {
-            for (String word : notContainsWords.split(",")) {
-                if (senderTitle.contains(word)) {
-                    return;
-                }
-            }
-        }
+//        String senderTitle = wcpayinfo.getString("sendertitle");
+//        String notContainsWords = PreferencesUtils.notContains();
+//        if (!isEmpty(notContainsWords)) {
+//            for (String word : notContainsWords.split(",")) {
+//                if (senderTitle.contains(word)) {
+//                    return;
+//                }
+//            }
+//        }
 
         String nativeUrlString = wcpayinfo.getString("nativeurl");
         Uri nativeUrl = Uri.parse(nativeUrlString);
@@ -245,9 +244,9 @@ public class Main implements IXposedHookLoadPackage {
 
     private int getDelayTime() {
         int delayTime = 0;
-        if (PreferencesUtils.delay()) {
-            delayTime = getRandom(PreferencesUtils.delayMin(), PreferencesUtils.delayMax());
-        }
+//        if (PreferencesUtils.delay()) {
+        delayTime = getRandom(PreferencesUtils.delayMin(), PreferencesUtils.delayMax());
+//        }
         return delayTime;
     }
 

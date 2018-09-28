@@ -37,8 +37,8 @@ public class RangePreference extends DialogPreference {
         endEditText = (TextView) view.findViewById(R.id.max_value);
 
         SharedPreferences pref = getSharedPreferences();
-        int startValue = pref.getInt(startKey, 0);
-        int endValue = pref.getInt(endKey, 0);
+        int startValue = pref.getInt(startKey, 200);
+        int endValue = pref.getInt(endKey, 500);
         startEditText.setText(String.valueOf(startValue));
         endEditText.setText(String.valueOf(endValue));
     }

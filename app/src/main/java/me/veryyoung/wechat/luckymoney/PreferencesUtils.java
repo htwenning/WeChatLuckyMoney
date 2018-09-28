@@ -34,15 +34,16 @@ public class PreferencesUtils {
     }
 
     public static boolean delay() {
-        return getInstance().getBoolean("delay", false);
+        return true;
+//        return getInstance().getBoolean("delay", false);
     }
 
     public static int delayMin() {
-        return getInstance().getInt("delay_min", 0);
+        return getInstance().getInt("delay_min", 100);
     }
 
     public static int delayMax() {
-        return getInstance().getInt("delay_max", 0);
+        return getInstance().getInt("delay_max", 500);
     }
 
     public static boolean receiveTransfer() {
