@@ -1,3 +1,10 @@
+# NOTE
+
+- 删掉原作者的资助和介绍， 精简功能。
+- 默认增加延迟。
+
+原readme：
+
 # WechatLuckyMoney
 
 微信抢红包插件，基于 Xposed 框架，速度快得冷人发指。为避免过度拉仇恨，请谨慎使用。
@@ -13,14 +20,7 @@
 某个快递小哥联系到我，说很多顾客给以转账的方式给他们付钱，他们很容易忙着工作，忘了接收转账。于是开发了自动接收转账的功能。
 大家有类似这样的需求可以提给我。
 
-# 截图
 
-![](http://ww1.sinaimg.cn/large/9732f922gw1f57ga6rkcpg20k00zkb29.gif)
-
-# 打赏
-![](https://ws1.sinaimg.cn/large/006tNc79ly1fitgjgbupqj30yi1bcgnx.jpg)
-
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fitgk77mhrj30ng0zkabc.jpg)
 
 # License
 
